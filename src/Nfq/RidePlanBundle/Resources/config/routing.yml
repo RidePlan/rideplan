@@ -1,0 +1,7 @@
+ride_plan_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: RidePlanBundle:Default:index }
+
+index:
+    path:     /
+    defaults: { _controller: RidePlanBundle:StartPage:index }
