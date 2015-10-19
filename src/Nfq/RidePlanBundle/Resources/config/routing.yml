@@ -5,3 +5,7 @@ ride_plan_homepage:
 index:
     path:     /
     defaults: { _controller: RidePlanBundle:StartPage:index }
+
+list:
+    path:     /list
+    defaults: { _controller: RidePlanBundle:RideList:list }
