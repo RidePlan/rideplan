@@ -9,3 +9,11 @@ index:
 list:
     path:     /list
     defaults: { _controller: RidePlanBundle:RideList:list }
+
+_show_profile:
+    path:     /account/showprofile
+    defaults: { _controller: RidePlanBundle:Account:ShowProfile }
+
+_register_account:
+    path:     /register
+    defaults: { _controller: RidePlanBundle:AccountRegistration:RegisterAccount }
