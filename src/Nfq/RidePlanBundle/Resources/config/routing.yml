@@ -25,3 +25,11 @@ suggest_route:
 search_route:
     path:     /route/search/{query}
     defaults: { _controller: RidePlanBundle:Route:Search }
+
+_route_show:
+    path:     query
+    defaults: { _controller: RidePlanBundle:RoutePage:RouteShow }
+
+show:
+    path:     /show/{routeId}
+    defaults: { _controller: RidePlanBundle:RoutePage:show }
