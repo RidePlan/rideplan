@@ -21,3 +21,7 @@ _register_account:
 suggest_route:
     path:     /route/suggest
     defaults: { _controller: RidePlanBundle:Route:Suggest }
+
+search_route:
+    path:     /route/search/{query}
+    defaults: { _controller: RidePlanBundle:Route:Search }

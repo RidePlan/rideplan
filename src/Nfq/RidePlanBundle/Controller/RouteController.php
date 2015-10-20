@@ -10,4 +10,11 @@ class RouteController extends Controller
     {
         return $this->render('RidePlanBundle:Route:Suggest.html.twig', array());
     }
+
+    public function SearchAction($query)
+    {
+        return $this->render('RidePlanBundle:Route:Search.html.twig', array(
+            'query' => urldecode($query)
+        ));
+    }
 }
