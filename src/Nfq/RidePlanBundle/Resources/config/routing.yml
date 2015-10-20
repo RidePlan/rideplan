@@ -17,3 +17,7 @@ _show_profile:
 _register_account:
     path:     /register
     defaults: { _controller: RidePlanBundle:AccountRegistration:RegisterAccount }
+
+suggest_route:
+    path:     /route/suggest
+    defaults: { _controller: RidePlanBundle:Route:Suggest }
