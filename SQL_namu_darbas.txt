@@ -1,0 +1,153 @@
+a) Papildykite autorių lentelę įrašais.
+
+INSERT INTO Authors (name) VALUES ('ricardas');
+
+mysql> select * from Authors;
++----------+-----------------+
+| authorId | name            |
++----------+-----------------+
+|        1 | Chris Smith     |
+|        2 | Steven Levithan |
+|        3 |  Jan Goyvaerts  |
+|        4 | Ryan Benedetti  |
+|        5 |  Al Anderson    |
+|        6 | Clay Breshears  |
+|        7 | Kevlin Henney   |
+|        8 | ricardas        |
++----------+-----------------+
+8 rows in set (0.00 sec)
+
+
+b) Papildykite knygų lentelę, įrašais apie knygas, kurių autorius įrašėte prieš tai.
+
+INSERT INTO Books (authorId, title, year) VALUES (8, "Mano gyvenimas", "2015");
+
+mysql> SELECT * FROM Books;
++--------+----------+---------------------------------------------------+------+
+| bookId | authorId | title                                             | year |
++--------+----------+---------------------------------------------------+------+
+|      1 |        1 | Programming F# 3.0, 2nd Edition                   | 2012 |
+|      2 |        2 | Regular Expressions Cookbook, 2nd Edition         | 2012 |
+|      3 |        4 | Head First Networking                             | 2009 |
+|      4 |        6 | The Art of Concurrency                            | 2009 |
+|      5 |        7 | 97 Things Every Programmer Should Know            | 2010 |
+|      6 |     NULL | McCullough and Berglund on Mastering Advanced Git | NULL |
+|      7 |     NULL | Version Control with Git, 2nd Edition             | 2012 |
+|      8 |     NULL | Learning Python, 4th Edition                      | 2009 |
+|      9 |        8 | Mano gyvenimas                                    | 2015 |
++--------+----------+---------------------------------------------------+------+
+9 rows in set (0.00 sec)
+
+
+c) Išrinkite knygų informaciją prijungdami autorius iš autorių lentelės.
+
+SELECT b.bookId, b.title, b.year, a.name FROM Books b LEFT JOIN Authors a ON b.authorId = a.authorId;
++--------+---------------------------------------------------+------+-----------------+
+| bookId | title                                             | year | name            |
++--------+---------------------------------------------------+------+-----------------+
+|      1 | Programming F# 3.0, 2nd Edition                   | 2012 | Chris Smith     |
+|      2 | Regular Expressions Cookbook, 2nd Edition         | 2012 | Steven Levithan |
+|      3 | Head First Networking                             | 2009 | Ryan Benedetti  |
+|      4 | The Art of Concurrency                            | 2009 | Clay Breshears  |
+|      5 | 97 Things Every Programmer Should Know            | 2010 | Kevlin Henney   |
+|      6 | McCullough and Berglund on Mastering Advanced Git | NULL | NULL            |
+|      7 | Version Control with Git, 2nd Edition             | 2012 | NULL            |
+|      8 | Learning Python, 4th Edition                      | 2009 | NULL            |
+|      9 | Mano gyvenimas                                    | 2015 | ricardas        |
++--------+---------------------------------------------------+------+-----------------+
+9 rows in set (0.00 sec)
+
+
+d) Pakeiskite vienos knygos autorių į kitą.
+
+UPDATE Books SET AuthorId = 8 WHERE bookid = 7;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT b.bookId, b.title, b.year, a.name FROM Books b LEFT JOIN Authors a ON b.authorId = a.authorId;
++--------+---------------------------------------------------+------+-----------------+
+| bookId | title                                             | year | name            |
++--------+---------------------------------------------------+------+-----------------+
+|      1 | Programming F# 3.0, 2nd Edition                   | 2012 | Chris Smith     |
+|      2 | Regular Expressions Cookbook, 2nd Edition         | 2012 | Steven Levithan |
+|      3 | Head First Networking                             | 2009 | Ryan Benedetti  |
+|      4 | The Art of Concurrency                            | 2009 | Clay Breshears  |
+|      5 | 97 Things Every Programmer Should Know            | 2010 | Kevlin Henney   |
+|      6 | McCullough and Berglund on Mastering Advanced Git | NULL | NULL            |
+|      7 | Version Control with Git, 2nd Edition             | 2012 | ricardas        |
+|      8 | Learning Python, 4th Edition                      | 2009 | NULL            |
+|      9 | Mano gyvenimas                                    | 2015 | ricardas        |
++--------+---------------------------------------------------+------+-----------------+
+9 rows in set (0.00 sec)
+
+
+e) Suskaičiuokite kiek knygų kiekvieno autoriaus yra duomenų bazėje (įtraukdami autorius kurie neturi knygų, bei neitraukdami šių autorių).
+
+SELECT Count(b.bookId) AS BooksCount, a.name FROM Authors a LEFT JOIN Books b ON a.authorId = b.authorId GROUP BY a.name;
++------------+-----------------+
+| BooksCount | name            |
++------------+-----------------+
+|          0 |  Al Anderson    |
+|          0 |  Jan Goyvaerts  |
+|          1 | Chris Smith     |
+|          1 | Clay Breshears  |
+|          1 | Kevlin Henney   |
+|          0 | ramunas         |
+|          2 | ricardas        |
+|          1 | Ryan Benedetti  |
+|          1 | Steven Levithan |
++------------+-----------------+
+9 rows in set (0.00 sec)
+
+SELECT Count(b.bookId) AS BooksCount, a.name FROM Books b LEFT JOIN Authors a ON a.authorId = b.authorId WHERE a.name is not NULL group by b.authorId;
++------------+-----------------+
+| BooksCount | name            |
++------------+-----------------+
+|          1 | Chris Smith     |
+|          1 | Steven Levithan |
+|          1 | Ryan Benedetti  |
+|          1 | Clay Breshears  |
+|          1 | Kevlin Henney   |
+|          2 | ricardas        |
++------------+-----------------+
+6 rows in set (0.00 sec)
+
+
+f) Pašalinkite jūsų suvestus autorius. 
+//papildomai buvo pridetas ramunas
+DELETE FROM Authors WHERE authorId = 8 OR authorId = 9;
+Query OK, 2 rows affected (0.00 sec)
+
+mysql> SELECT * FROM Authors;
++----------+-----------------+
+| authorId | name            |
++----------+-----------------+
+|        1 | Chris Smith     |
+|        2 | Steven Levithan |
+|        3 |  Jan Goyvaerts  |
+|        4 | Ryan Benedetti  |
+|        5 |  Al Anderson    |
+|        6 | Clay Breshears  |
+|        7 | Kevlin Henney   |
++----------+-----------------+
+7 rows in set (0.00 sec)
+
+
+g) Pašalinkite knygas, kurios neturi autorių.
+
+DELETE b FROM Books b LEFT JOIN Authors a ON b.authorId = a.authorId WHERE a.authorId is NULL;
+Query OK, 4 rows affected (0.05 sec)
+
+mysql> SELECT * FROM Books;
++--------+----------+-------------------------------------------+------+
+| bookId | authorId | title                                     | year |
++--------+----------+-------------------------------------------+------+
+|      1 |        1 | Programming F# 3.0, 2nd Edition           | 2012 |
+|      2 |        2 | Regular Expressions Cookbook, 2nd Edition | 2012 |
+|      3 |        4 | Head First Networking                     | 2009 |
+|      4 |        6 | The Art of Concurrency                    | 2009 |
+|      5 |        7 | 97 Things Every Programmer Should Know    | 2010 |
++--------+----------+-------------------------------------------+------+
+5 rows in set (0.00 sec)
+
+
