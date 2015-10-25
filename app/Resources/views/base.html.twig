@@ -1,13 +1,55 @@
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        {% block stylesheets %}
+            <link href='http://fonts.googleapis.com/css?family=Irish+Grover' rel='stylesheet' type='text/css'>
+            <link href='http://fonts.googleapis.com/css?family=La+Belle+Aurore' rel='stylesheet' type='text/css'>
+            <link href="{{ asset('bundles/rideplan/css/page.css') }}" type="text/css" rel="stylesheet">
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+    <section id="wrapper">
+        <header id="header">
+            <div class="top">
+                {% block navigation %}
+                    <nav>
+                        <ul class="navigation">
+                            <li><a href="{{ path('index') }}">Home</a></li>
+                            <li><a href="{{ path('list') }}">Routes</a></li>
+                            <li><a href="{{ path('suggest_route') }}">Route suggest</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </nav>
+                {% endblock %}
+            </div>
+
+            <hgroup>
+                <h2>{% block route_title %}<a href="#">Bicycle Routes</a>{% endblock %}</h2>
+                <h3>{% block route_tagline %}<a href="#">Various choice of routes </a>{% endblock %}</h3>
+            </hgroup>
+        </header>
+
+        <section class="main-col">
+            {% block body %}{% endblock %}
+        </section>
+        <aside class="sidebar">
+            {% block sidebar %}{% endblock %}
+        </aside>
+
+        <div id="footer">
+            {% block footer %}
+                Bicycle routes - created by 5 team
+            {% endblock %}
+        </div>
+    </section>
+
         {% block javascripts %}{% endblock %}
     </body>
 </html>
