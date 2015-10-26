@@ -1,7 +1,42 @@
 {% extends "::base.html.twig" %}
+{% set routes = [['Power track 1','Advanced','50','8/10'],
+        ['Simple track','Beginner','30','9/10'],
+        ['Power track 2','Advanced','150','9/10'],
+        ['Power track 3','Intermediate','60','7/10'],
+        ['Power track 3','Intermediate','60','7/10'],
+        ['Power track 3','Intermediate','60','7/10'],
+        ['Power track 3','Intermediate','60','7/10'],
+        ['Power track 3','Intermediate','60','7/10'],
+        ['Beginner track','Beginner','30','8/10']] %}
 
 {% block title %}RidePlanBundle:RideList:list{% endblock %}
 
 {% block body %}
-<h1>Welcome to the RideList:list page</h1>
+<section>
+    <header>
+        <h1>Choose Bicycle Track From List</h1>
+    </header>
+    <table class="table1">
+        <thead>
+            <tr>
+                <th>Track Name</th>
+                <th>Difficulty</th>
+                <th>Avg. Time (m)</th>
+                <th>Rate</th>
+                <th>View</th>
+            </tr>
+        </thead>
+        <tbody>
+                {% for route in routes %}
+                <tr class="list">
+                    <td>{{ route[0] }}</td>
+                    <td>{{ route[1] }}</td>
+                    <td>{{ route[2] }}</td>
+                    <td>{{ route[3] }}</td>
+                    <td><a href="#">Show</a></td>
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+</section>
 {% endblock %}
