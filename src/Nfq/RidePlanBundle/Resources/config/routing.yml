@@ -10,6 +10,17 @@ list:
     path:     /list
     defaults: { _controller: RidePlanBundle:RideList:list }
 
+login:
+    path:     /login
+    defaults: { _controller: RidePlanBundle:Account:Login }
+
+login_check:
+    path:     /login_check
+    defaults: { _controller: RidePlanBundle:Account:LoginCheck }
+
+logout:
+    path:     /logout
+
 show_profile:
     path:     /account/showprofile
     defaults: { _controller: RidePlanBundle:Account:ShowProfile }
