@@ -1,8 +1,10 @@
 Exec { path => ['/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/'] }
 
-exec { 'update system package definitions':
-  command => 'apt-get update',
+exec { "apt-update":
+  command => "apt-get update"
 }
+
+Exec["apt-update"] -> Package <| |>
 
 class php-setup {
 
