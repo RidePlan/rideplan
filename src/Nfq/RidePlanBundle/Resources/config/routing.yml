@@ -10,7 +10,7 @@ list:
     path:     /list
     defaults: { _controller: RidePlanBundle:RideList:list }
 
-_show_profile:
+show_profile:
     path:     /account/showprofile
     defaults: { _controller: RidePlanBundle:Account:ShowProfile }
 
