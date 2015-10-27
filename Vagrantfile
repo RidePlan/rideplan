@@ -13,7 +13,7 @@ SCRIPT
 Vagrant.configure(2) do |config|
   config.vm.box = "puphpet/debian75-x32"
 
-  config.vm.network "forwarded_port", guest: 80, host: 8000
+  config.vm.network "private_network", ip: "192.168.15.5"
   config.vm.hostname = "rideplan.eu"
 
   config.vm.provision "shell", inline: $script
