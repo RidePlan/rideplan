@@ -59,7 +59,16 @@ class server-setup {
   }
 }
 
+class mysql-setup {
+
+  class { '::mysql::server':
+    root_password           => 'dbPwd123',
+    remove_default_accounts => true,
+  }
+}
+
 include php-setup
 include composer-setup
 include nginx-setup
+include mysql-setup
 include server-setup

@@ -5,6 +5,9 @@ $script = <<SCRIPT
   if [ ! -d "/etc/puppet/modules/nginx" ]; then
     puppet module install example42-nginx
   fi
+  if [ ! -d "/etc/puppet/modules/mysql" ]; then
+    puppet module install puppetlabs-mysql
+  fi
 SCRIPT
 
 Vagrant.configure(2) do |config|
