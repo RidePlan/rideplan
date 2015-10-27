@@ -65,6 +65,12 @@ class mysql-setup {
     root_password           => 'dbPwd123',
     remove_default_accounts => true,
   }
+
+  mysql::db { 'rideplan':
+    user     => 'rideplan',
+    password => 'rideplanPwd123',
+    host     => 'localhost',
+  }
 }
 
 include php-setup
