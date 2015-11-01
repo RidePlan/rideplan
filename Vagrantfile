@@ -2,6 +2,9 @@
 # vi: set ft=ruby :
 
 $script = <<SCRIPT
+  if [ ! -d "/etc/puppet/modules/composer" ]; then
+    puppet module install willdurand-composer
+  fi
   if [ ! -d "/etc/puppet/modules/nginx" ]; then
     puppet module install example42-nginx
   fi

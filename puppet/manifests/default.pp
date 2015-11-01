@@ -1,28 +1,15 @@
 Exec { path => ['/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/'] }
 
-exec { "apt-update":
-  command => "apt-get update"
+exec { 'apt-update':
+  command => 'apt-get update'
 }
 
-Exec["apt-update"] -> Package <| |>
+Exec['apt-update'] -> Package <| |>
 
 class php-setup {
 
   package { 'php5-cli':
     ensure => present,
-  }
-}
-
-class composer-setup {
-
-  package { 'curl':
-    ensure => present
-  }
-
-  exec { 'install composer':
-    command => 'curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin && mv /usr/local/bin/composer.phar /usr/local/bin/composer',
-    creates => '/usr/local/bin/composer',
-    require => [Package['curl'], Package['php5-cli']]
   }
 }
 
@@ -75,8 +62,8 @@ class mysql-setup {
   }
 }
 
+include composer
 include php-setup
-include composer-setup
 include nginx-setup
 include mysql-setup
 include server-setup
