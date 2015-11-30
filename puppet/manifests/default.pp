@@ -6,13 +6,6 @@ exec { 'apt-update':
 
 Exec['apt-update'] -> Package <| |>
 
-class php-setup {
-
-  package { 'php5-cli':
-    ensure => present,
-  }
-}
-
 class nginx-setup {
 
   include 'nginx'
@@ -50,7 +43,7 @@ class server-setup {
 
 class mysql-setup {
 
-  class { '::mysql::server':
+  class { 'mysql::server':
     root_password           => 'dbPwd123',
     remove_default_accounts => true,
   }
@@ -60,10 +53,14 @@ class mysql-setup {
     password => 'rideplanPwd123',
     host     => 'localhost',
   }
+
+  package { 'php5-mysql':
+    ensure => present,
+  }
 }
 
 include composer
-include php-setup
+include php
 include nginx-setup
 include mysql-setup
 include server-setup
