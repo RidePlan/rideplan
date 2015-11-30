@@ -6,13 +6,6 @@ exec { 'apt-update':
 
 Exec['apt-update'] -> Package <| |>
 
-class php-setup {
-
-  package { 'php5-cli':
-    ensure => present,
-  }
-}
-
 class nginx-setup {
 
   include 'nginx'
@@ -63,7 +56,7 @@ class mysql-setup {
 }
 
 include composer
-include php-setup
+include php
 include nginx-setup
 include mysql-setup
 include server-setup
