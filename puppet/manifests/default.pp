@@ -43,7 +43,7 @@ class server-setup {
 
 class mysql-setup {
 
-  class { '::mysql::server':
+  class { 'mysql::server':
     root_password           => 'dbPwd123',
     remove_default_accounts => true,
   }
@@ -52,6 +52,10 @@ class mysql-setup {
     user     => 'rideplan',
     password => 'rideplanPwd123',
     host     => 'localhost',
+  }
+
+  package { 'php5-mysql':
+    ensure => present,
   }
 }
 
