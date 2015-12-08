@@ -1,0 +1,2 @@
+SUBSYSTEM=="bdi",ACTION=="add",RUN+="/etc/init.d/server start"
+SUBSYSTEM=="bdi",ACTION=="remove",RUN+="/etc/init.d/server stop"

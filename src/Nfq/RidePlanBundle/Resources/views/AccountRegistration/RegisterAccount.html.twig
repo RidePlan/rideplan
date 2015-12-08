@@ -1,0 +1,10 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}RidePlanBundle:AccountRegistration:RegisterAccount{% endblock %}
+
+{% block body %}
+<h1>Welcome to the account registration</h1>
+{{ form_start(form) }}
+    {{ form_errors(form) }}
+{{ form_end(form) }}
+{% endblock %}

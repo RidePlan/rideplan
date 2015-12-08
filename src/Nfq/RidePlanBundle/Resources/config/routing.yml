@@ -1,0 +1,35 @@
+ride_plan_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: RidePlanBundle:Default:index }
+
+index:
+    path:     /
+    defaults: { _controller: RidePlanBundle:StartPage:index }
+
+list:
+    path:     /list
+    defaults: { _controller: RidePlanBundle:RideList:list }
+
+show_profile:
+    path:     /account/showprofile
+    defaults: { _controller: RidePlanBundle:Account:ShowProfile }
+
+_register_account:
+    path:     /register
+    defaults: { _controller: RidePlanBundle:AccountRegistration:RegisterAccount }
+
+suggest_route:
+    path:     /route/suggest
+    defaults: { _controller: RidePlanBundle:Route:Suggest }
+
+search_route:
+    path:     /route/search/{query}
+    defaults: { _controller: RidePlanBundle:Route:Search }
+
+_route_show:
+    path:     query
+    defaults: { _controller: RidePlanBundle:RoutePage:RouteShow }
+
+show:
+    path:     /show/{routeId}
+    defaults: { _controller: RidePlanBundle:RoutePage:show }
