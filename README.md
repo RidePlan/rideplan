@@ -1,4 +1,3 @@
-rideplan
+RidePlan
 ========
-
-A Symfony project created on October 17, 2015, 10:20 am.
+[![Build Status](https://travis-ci.org/RidePlan/rideplan.svg?branch=master)](https://travis-ci.org/RidePlan/rideplan)
